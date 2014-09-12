@@ -3,7 +3,6 @@ Die die2;
 
 void setup()
 {
-	smooth();
 	size(300,300);
 	noLoop();
 	die1=new Die(40,40);
@@ -13,15 +12,19 @@ void setup()
 void draw()
 {	
 	background(255);
-	die1.show();
-	die2.show();
 	die1.roll();
 	die2.roll();
+		die1.show();
+	die2.show();
+	fill(0);
+	textSize(70);
+	textAlign(CENTER);
+	text(die1.numDots+die2.numDots, 215,110);
 	stroke(0);
 	noFill();
 	strokeWeight(2);
 	rect(0,0,300,300);
-}
+ }
 
 void mousePressed()
 {
@@ -30,15 +33,16 @@ void mousePressed()
 	
 class Die 
 {
-	int dieX, dieY, roll;
+	int dieX, dieY, numDots;
 	Die(int x, int y) 
 	{
+		roll();
 		dieX=x;
 		dieY=y;
 	}
 	void roll()
 	{
-		roll=(int)((Math.random()*5)+1);
+		numDots=(int)((Math.random()*5)+1);
 	}
 	void show()
 	{
@@ -57,29 +61,29 @@ class Die
 		curveVertex(dieX, dieY+100);
 		endShape();
 		strokeWeight(17);
-		if(roll==1)
+		if(numDots==1)
 		{
 			point(dieX+50,dieY+50);
 		}
-		if (roll==2)
+		if (numDots==2)
 		{
 			point(dieX+30,dieY+30);
 			point(dieX+70,dieX+70);
 		}
-		else if (roll==3)
+		else if (numDots==3)
 		{
 			point(dieX+30,dieY+30);
 			point(dieX+50,dieX+50);
 			point(dieX+70,dieY+70);			
 		}
-		else if (roll==4)
+		else if (numDots==4)
 		{
 			point(dieX+30,dieY+30);
 			point(dieX+70,dieX+70);
 			point(dieX+30,dieY+70);
 			point(dieX+70,dieX+30);
 		}
-		else if (roll==5)
+		else if (numDots==5)
 		{
 			point(dieX+30,dieY+30);
 			point(dieX+70,dieX+70);
@@ -88,7 +92,7 @@ class Die
 			point(dieX+50,dieX+50);
 			
 		}
-		else if (roll==6)
+		else if (numDots==6)
 		{
 			point(dieX+30,dieY+30);
 			point(dieX+30,dieX+50);
@@ -97,9 +101,6 @@ class Die
 			point(dieX+70,dieX+50);
 			point(dieX+70,dieX+70);
 		}
-		fill(0);
-	textSize(70);
-	textAlign(CENTER);
-	text(die1.roll+die2.roll, 215,110);
+
 	}
 }
